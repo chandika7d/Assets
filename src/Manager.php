@@ -13,6 +13,13 @@ class Manager
 	 *
 	 * @var string
 	 */
+	protected $version = '1.0';
+
+	/**
+	 * Regex to match against a filename/url to determine if it is an asset.
+	 *
+	 * @var string
+	 */
 	protected $asset_regex = '/.\.(css|js)$/i';
 
 	/**
@@ -201,7 +208,7 @@ class Manager
 				$this->$option = $config[$option];
 
 		// Set common options
-		foreach(array('public_dir', 'css_dir', 'js_dir', 'packages_dir', 'pipeline',  'pipeline_dir', 'pipeline_gzip') as $option)
+		foreach(array('public_dir', 'css_dir', 'js_dir', 'packages_dir', 'pipeline',  'pipeline_dir', 'pipeline_gzip', 'version') as $option)
 			if(isset($config[$option]))
 				$this->$option = $config[$option];
 
@@ -435,7 +442,7 @@ class Manager
 		// Build tags
 		$output = '';
 		foreach($assets as $asset)
-			$output .= '<link href="' . $asset . '"' . $attributes . " />\n";
+			$output .= '<link href="' . $asset . '?v='.$this->version.'"' . $attributes . " />\n";
 
 		return $output;
 	}
@@ -472,7 +479,7 @@ class Manager
 		// Build tags
 		$output = '';
 		foreach($assets as $asset)
-			$output .= '<script src="' . $asset . '"' . $attributes . "></script>\n";
+			$output .= '<script src="' . $asset . '?v='.$this->version.'"' . $attributes . "></script>\n";
 
 		return $output;
 	}

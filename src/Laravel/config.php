@@ -159,6 +159,13 @@ return [
 		),*/
 
 		/**
+		 * Add QueryString Version .
+		 *
+		 * @var string
+		 */
+		//'version' => '1.0',
+
+		/**
 		 * Preload assets.
 		 * Here you may set which assets (CSS files, JavaScript files or collections)
 		 * should be loaded by default even if you don't explicitly add them on run time.
